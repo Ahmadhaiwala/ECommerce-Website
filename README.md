@@ -1,75 +1,59 @@
-# React + TypeScript + Vite
+# Flowbite Shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern e-commerce frontend built with React, TypeScript, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19 + TypeScript
+- Vite
+- Tailwind CSS v4
+- React Router v7
+- Lucide React (icons)
+- DummyJSON API (product data)
 
-## React Compiler
+## Features
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- Auth — register/login with credentials stored in localStorage, session persists on refresh
+- Dark / Light mode — toggle in navbar, preference saved to localStorage
+- Product listing — fetched from DummyJSON with grid layout
+- Search — search by name, brand, category, or description via navbar
+- Filters — filter by max price, star rating, and brand with an apply/reset flow
+- Category bar — horizontal scrollable pill tabs to filter by category
+- Top Deals banner — highlights products with 15%+ discount
+- Favourites — heart any product, view and manage on the Favourites page
+- Cart — add products, adjust quantity, remove items, see order total
+- Checkout — places an order and clears the cart
+- Orders — view order history with Processing / Shipped / Delivered status
 
-Note: This will impact Vite dev & build performances.
+## Pages
 
-## Expanding the ESLint configuration
+| Route | Description |
+|---|---|
+| `/` | Home — product grid with filters and search |
+| `/favourites` | Saved products |
+| `/cart` | Cart with checkout |
+| `/orders` | Order history |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+# Install dependencies
+npm install --legacy-peer-deps
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Start dev server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+App runs at `http://localhost:5173`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Project Structure
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── components/
+│   ├── Home/         # Category bar, Filter sidebar, Items grid
+│   ├── layout/       # Navbar
+│   └── product/      # Top Deals banner
+├── context/          # Auth, Theme, Cart, Favourites, Orders, Filter, Product
+└── pages/            # Home, AuthPage, CartPage, FavouritesPage, OrdersPage
 ```
